@@ -35,3 +35,4 @@ async def add_file(message: types.Message):
 
 def register_document(dp: Dispatcher):
     dp.register_message_handler(add_file, IsGroup(), content_types=ContentType.DOCUMENT, state='*')
+

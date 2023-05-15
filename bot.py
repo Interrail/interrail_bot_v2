@@ -11,6 +11,7 @@ from tgbot.filters.user import UserAccess
 from tgbot.handlers.admin import register_admin
 from tgbot.handlers.application.application import register_application
 from tgbot.handlers.application.menu import register_menu
+from tgbot.handlers.container import register_container
 from tgbot.handlers.document import register_document
 from tgbot.handlers.help import register_help
 from tgbot.handlers.user import register_user
@@ -29,12 +30,14 @@ def register_all_filters(dp):
 
 
 def register_all_handlers(dp):
+    register_container(dp)
     register_admin(dp)
     register_user(dp)
     register_help(dp)
     register_menu(dp)
     register_application(dp)
     register_document(dp)
+
 
 async def main():
     logging.basicConfig(
