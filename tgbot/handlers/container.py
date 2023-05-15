@@ -2,6 +2,7 @@ from aiogram import Dispatcher
 from aiogram.types import Message
 
 from tgbot.keyboards.reply import start_keyboard
+from tgbot.misc.states import Container
 
 
 def get_container_info(container_name):
@@ -63,11 +64,17 @@ def get_container_info(container_name):
     return container_info
 
 
-async def container_check(message: Message):
-    message_text = message.text
-    container_info = get_container_info(message_text)
+async def enter_container(message: Message):
+    Container.container.set()
+    await message.answer("Введите номер контейнера", reply_markup=start_keyboard)
+
+
+async def get_container(message: Message, state):
+    container_name = message.text
+    container_info = get_container_info(container_name)
     await message.answer(container_info, reply_markup=start_keyboard)
 
 
 def register_container(dp: Dispatcher):
-    dp.register_message_handler(container_check, lambda message: message.text == "Проверка Контейнера", state='*')
+    dp.register_message_handler(enter_container, lambda message: message.text == "Проверка Контейнера", state='*')
+    dp.register_message_handler(get_container, state=Container.container)

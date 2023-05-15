@@ -1,8 +1,8 @@
 from aiogram.dispatcher.filters.state import StatesGroup, State
 
 
-class User(StatesGroup):
-    access = State()
+class Container(StatesGroup):
+    container = State()
 
 
 class ApplicationImportExport(StatesGroup):
