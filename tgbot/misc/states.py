@@ -1,10 +1,6 @@
 from aiogram.dispatcher.filters.state import StatesGroup, State
 
 
-class Container(StatesGroup):
-    container = State()
-
-
 class ApplicationImportExport(StatesGroup):
     application_type = State()
     terminal_name = State()
